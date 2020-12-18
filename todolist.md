@@ -22,6 +22,8 @@
 
 
 [ ] server
+  [ ] set up express
+  [ ] set up body parser
   [ ] take in the object from client with:
     [ ] input numbers
     [ ] mathematical operator to perform
