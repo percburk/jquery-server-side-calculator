@@ -24,7 +24,15 @@ function sendMathObject() {
   mathObject.numberTwo = Number($('#numberTwo').val());
   console.log(mathObject);
 
-
+  // send mathObject to server
+  $.ajax({
+    url: '/data',
+    type: 'POST',
+    data: mathObject,
+  }).then(function (response) {
+    console.log(response);
+    // renderToDOM goes here
+  });
 }
 
 function clearInputs() {
