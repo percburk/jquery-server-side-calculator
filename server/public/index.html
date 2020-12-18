@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="vendors/jquery.v3.5.1.js"></script>
-  <script src="scripts/client.js"></script>
-  <link rel="stylesheet" href="vendors/bootstrap.css">
-  <link rel="stylesheet" href="styles/style.css">
-  <title>Server Side Calculator</title>
-</head>
-<body class="container">
-  <h1>HTML set up!</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="vendors/jquery.v3.5.1.js"></script>
+    <script src="scripts/client.js"></script>
+    <link rel="stylesheet" href="vendors/bootstrap.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+    <title>Server Side Calculator</title>
+  </head>
+  <body class="container">
+    <h1>HTML set up!</h1>
+    <div class="inputContainer">
+      <input type="number" id="numberOne" placeholder="enter number" />
+      <button id="add">+</button>
+      <button id="subtract">-</button>
+      <button id="multiply">x</button>
+      <button id="divide">/</button>
+      <input type="number" id="numberTwo" placeholder="enter number" />
+      <button id="enter">=</button>
+      <button id="clear">C</button>
+    </div>
+    <div class="resultsContainer">
+      <p id="answer"></p>
+      <table id="history">
+      </table>
+    </div>
+  </body>
 </html>
