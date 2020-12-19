@@ -14,6 +14,13 @@ app.post('/data', (req, res) => {
   solveEquation(mathObject);
 });
 
+
+// GET route to send up equationLog
+app.get('/data', (req, res) => {
+  console.log('sending up equationLog');
+  res.send(equationLog);
+});
+
 let solveEquation = (object) => {
   console.log(object);
 

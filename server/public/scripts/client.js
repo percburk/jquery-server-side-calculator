@@ -5,6 +5,7 @@ function onReady() {
   $('.operator').on('click', assignOperator);
   $('#enter').on('click', sendMathObject);
   $('#clear').on('click', clearInputs);
+  renderToDOM();
 }
 
 let mathObject = {};
@@ -31,11 +32,27 @@ function sendMathObject() {
     data: mathObject,
   }).then(function (response) {
     console.log(response);
-    // renderToDOM goes here
+    renderToDOM();
   });
 }
 
-
+function renderToDOM() {
+  // get array of equationLog from server
+  $.ajax({
+    url: '/data',
+    type: 'GET',
+  }).then(function (response) {
+    console.log(response);
+    $('#answer').empty();
+    $('#history').empty();
+    $('#answer').text(response[response.length - 1].answer);
+    for (let object of response) {
+      $('#history').append(`
+        <li>${object.equation}</li>
+      `);
+    }
+  });
+}
 
 function clearInputs() {
   console.log('clicked clear!');
