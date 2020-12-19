@@ -20,8 +20,8 @@ function sendMathObject() {
   console.log('clicked enter!');
   delete mathObject.numberOne;
   delete mathObject.numberTwo;
-  mathObject.numberOne = Number($('#numberOne').val());
-  mathObject.numberTwo = Number($('#numberTwo').val());
+  mathObject.numberOne = $('#numberOne').val();
+  mathObject.numberTwo = $('#numberTwo').val();
   console.log(mathObject);
 
   // send mathObject to server

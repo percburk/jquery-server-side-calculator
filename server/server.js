@@ -6,14 +6,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('server/public'));
 
 
-// PORT route for mathObject
+// POST route for mathObject
 app.post('/data', (req, res) => {
-  console.log(req.body);
+  let mathObject = req.body;
   res.sendStatus(201);
+  solveEquation(mathObject);
 });
 
 let solveEquation = (object) => {
   console.log(object);
+  switch (true) {
+    case 
+  }
 }
 
 
