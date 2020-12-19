@@ -5,6 +5,7 @@ const PORT = 5000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('server/public'));
 
+// equationLog array holds the objects containing answers and equation strings
 const equationLog = [];
 
 // POST route for mathObject from client
@@ -52,8 +53,8 @@ let equationSolver = (object) => {
 
   // push solvedEquation object into equationLog array
   console.log(solvedEquation);
-  return equationLog.push(solvedEquation);
-}; // end solveEquation
+  return equationLog.unshift(solvedEquation);
+} // end solveEquation
 
 // app listen
 app.listen(PORT, () => {

@@ -3,7 +3,7 @@ $(onReady);
 function onReady() {
   console.log('JQ');
   $('.operator').on('click', assignOperator);
-  $('#enter').on('click', sendMathObject);
+  $('#enter').on('click', mathObjectToServer);
   $('#clear').on('click', clearInputs);
   renderToDOM();
 } // end onReady
@@ -18,9 +18,8 @@ function assignOperator() {
   mathObject.operator = operator;
 } // end assignOperator
 
-function sendMathObject() {
-  console.log('clicked enter!');
-  // delete any previous numbers in mathObject, start fresh
+function mathObjectToServer() {
+  // delete any previous numbers in mathObject, assign new values
   delete mathObject.numberOne;
   delete mathObject.numberTwo;
   mathObject.numberOne = $('#numberOne').val();
@@ -48,7 +47,7 @@ function renderToDOM() {
     $('#answer').empty();
     $('#history').empty();
     // display last answer from equationLog
-    $('#answer').text(response[response.length - 1].answer);
+    $('#answer').text(response[0].answer);
     for (let object of response) {
       $('#history').append(`<li>${object.equation}</li>`);
     }
