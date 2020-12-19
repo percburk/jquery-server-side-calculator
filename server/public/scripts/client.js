@@ -6,26 +6,28 @@ function onReady() {
   $('#enter').on('click', sendMathObject);
   $('#clear').on('click', clearInputs);
   renderToDOM();
-}
+} // end onReady
 
 let mathObject = {};
 
 function assignOperator() {
+  // should work like a calculator, clicking new operator will delete previous
   delete mathObject.operator;
   console.log('clicked', $(this).data('operator'));
   let operator = $(this).data('operator');
   mathObject.operator = operator;
-}
+} // end assignOperator
 
 function sendMathObject() {
   console.log('clicked enter!');
+  // delete any previous numbers in mathObject, start fresh
   delete mathObject.numberOne;
   delete mathObject.numberTwo;
   mathObject.numberOne = $('#numberOne').val();
   mathObject.numberTwo = $('#numberTwo').val();
   console.log(mathObject);
 
-  // send mathObject to server
+  // mathObject to server through POST route
   $.ajax({
     url: '/data',
     type: 'POST',
@@ -34,10 +36,10 @@ function sendMathObject() {
     console.log(response);
     renderToDOM();
   });
-}
+} // end sendMathObject
 
 function renderToDOM() {
-  // get array of equationLog from server
+  // equationLog array from server through GET route
   $.ajax({
     url: '/data',
     type: 'GET',
@@ -45,16 +47,15 @@ function renderToDOM() {
     console.log(response);
     $('#answer').empty();
     $('#history').empty();
+    // display last answer from equationLog
     $('#answer').text(response[response.length - 1].answer);
     for (let object of response) {
-      $('#history').append(`
-        <li>${object.equation}</li>
-      `);
+      $('#history').append(`<li>${object.equation}</li>`);
     }
   });
-}
+} // end renderToDOM
 
 function clearInputs() {
   console.log('clicked clear!');
   $('.inputContainer input').val('');
-}
+} // end clearInputs
