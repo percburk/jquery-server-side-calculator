@@ -35,6 +35,8 @@ function sendMathObject() {
   });
 }
 
+
+
 function clearInputs() {
   console.log('clicked clear!');
   $('.inputContainer input').val('');
