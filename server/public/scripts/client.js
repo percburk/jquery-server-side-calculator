@@ -9,33 +9,49 @@ function onReady() {
   renderToDOM();
 } // end onReady
 
-let mathObject = {};
+let mathString = '';
+let operator;
+
+function makeNumbers() {
+  console.log($(this).data('number'));
+  let clickedNumber = $(this).data('number');
+  mathString += clickedNumber.toString();
+  $('#calculatorDisplay').empty();
+  $('#calculatorDisplay').text(mathString);
+}
 
 function assignOperator() {
   // should work like a calculator, clicking new operator will delete previous
-  delete mathObject.operator;
   console.log('clicked', $(this).data('operator'));
-  let operator = $(this).data('operator');
-  mathObject.operator = operator;
+  operator = $(this).data('operator');
+  mathString += operator;
+  $('#calculatorDisplay').empty();
+  $('#calculatorDisplay').append(mathString);
 } // end assignOperator
 
 function mathObjectToServer() {
-  // delete any previous numbers in mathObject, assign new values
-  delete mathObject.numberOne;
-  delete mathObject.numberTwo;
-  mathObject.numberOne = $('#numberOne').val();
-  mathObject.numberTwo = $('#numberTwo').val();
-  console.log(mathObject);
-
-  // mathObject to server through POST route
-  $.ajax({
-    url: '/data',
-    type: 'POST',
-    data: mathObject,
-  }).then(function (response) {
-    console.log(response);
-    renderToDOM();
-  });
+  $('#calculatorDisplay').empty();
+  console.log(mathString);
+  let mathObject = {};
+  let operatorIndex = mathString.indexOf(operator);
+  if (operatorIndex === -1) {
+    $('#answer').text(mathString);
+    mathString = '';
+  } else {
+    mathObject.numberOne = mathString.slice(0, operatorIndex);
+    mathObject.numberTwo = mathString.slice(operatorIndex + 1);
+    mathObject.operator = operator;
+    // mathObject to server through POST route
+    $.ajax({
+      url: '/data',
+      type: 'POST',
+      data: mathObject,
+    }).then(function (response) {
+      console.log(response);
+      renderToDOM();
+    });
+    mathString = '';
+  }
 } // end sendMathObject
 
 function renderToDOM() {
@@ -57,5 +73,7 @@ function renderToDOM() {
 
 function clearInputs() {
   console.log('clicked clear!');
-  $('#numberDisplay').empty();
+  $('#calculatorDisplay').empty();
+  $('#answer').empty();
+  mathString = '';
 } // end clearInputs

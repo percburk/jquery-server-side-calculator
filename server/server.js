@@ -37,7 +37,7 @@ let equationSolver = (object) => {
     case '-':
       mathAnswer = numberOne - numberTwo;
       break;
-    case 'x':
+    case '*':
       mathAnswer = numberOne * numberTwo;
       break;
     case '/':
