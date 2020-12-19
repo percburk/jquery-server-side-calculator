@@ -29,17 +29,17 @@ let equationSolver = (object) => {
   let numberOne = Number(object.numberOne);
   let numberTwo = Number(object.numberTwo);
 
-  switch (true) {
-    case operator === '+':
+  switch (operator) {
+    case '+':
       mathAnswer = numberOne + numberTwo;
       break;
-    case operator === '-':
+    case '-':
       mathAnswer = numberOne - numberTwo;
       break;
-    case operator === 'x':
+    case 'x':
       mathAnswer = numberOne * numberTwo;
       break;
-    case operator === '/':
+    case '/':
       mathAnswer = numberOne / numberTwo;
       break;
   }
