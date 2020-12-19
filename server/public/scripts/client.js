@@ -5,6 +5,7 @@ function onReady() {
   $('.operator').on('click', assignOperator);
   $('#enter').on('click', mathObjectToServer);
   $('#clear').on('click', clearInputs);
+  $('.number').on('click', makeNumbers);
   renderToDOM();
 } // end onReady
 
@@ -56,5 +57,5 @@ function renderToDOM() {
 
 function clearInputs() {
   console.log('clicked clear!');
-  $('.inputContainer input').val('');
+  $('#numberDisplay').empty();
 } // end clearInputs
