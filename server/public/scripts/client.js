@@ -22,11 +22,15 @@ function makeNumbers() {
 
 function assignOperator() {
   console.log('clicked', $(this).data('operator'));
-  operator = $(this).data('operator');
-  mathString += ` ${operator} `;
+  if (!operator) {
+    operator = $(this).data('operator');
+    mathString += ` ${operator} `;
+  } else {
+    mathString = mathString.replace(operator, $(this).data('operator'));
+    operator = $(this).data('operator');
+  }
   $('#calculatorDisplay').empty();
   $('#calculatorDisplay').append(mathString);
-  $('.operator').prop('disabled', true);
 } // end assignOperator
 
 function mathObjectToServer() {
