@@ -56,7 +56,6 @@ function mathObjectToServer() {
   }
   mathString = '';
   operator = '';
-  $('.operator').prop('disabled', false);
 } // end sendMathObject
 
 function renderToDOM() {
