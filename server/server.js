@@ -15,7 +15,7 @@ app.post('/data', (req, res) => {
   equationSolver(mathObject);
 });
 
-app.delete('/clear', (req, res) => {
+app.delete('/data', (req, res) => {
   res.sendStatus(201);
   equationLog.length = 0;
 });

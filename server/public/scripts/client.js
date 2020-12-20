@@ -79,7 +79,7 @@ function mathObjectToServer() {
 
 function clearHistory() {
       $.ajax({
-        url: '/clear',
+        url: '/data',
         type: 'DELETE'
       }).then(function (response) {
         console.log(response);
