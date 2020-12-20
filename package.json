@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/percburk/jquery-server-side-calculator#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "tailwindcss": "^2.0.2"
   }
 }
