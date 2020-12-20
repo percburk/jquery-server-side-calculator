@@ -33,6 +33,12 @@
   [x] send the record of equations to the client
 
 [ ] styling
-[ ] stretch goals!
+[ ] stretch goals
+  [ ] only allow POST to server if all info is supplied
+  [ ] clear history with a button click using DELETE
+  [ ] make it possible for user to rerun an equation listed in history
+      (may not be worth it on this one)
+
+
 
 
