@@ -6,44 +6,50 @@
     <script src="vendors/jquery.v3.5.1.js"></script>
     <script src="scripts/client.js"></script>
     <link rel="stylesheet" href="styles/style.css" />
-    <link rel="stylesheet" href="styles/tailwind.css" />
     <title>Server Side Calculator</title>
   </head>
-  <body class="container">
-    <h1>Calculator</h1>
-    <div class="calculator">
-      <div class="calculatorRowOne">
-        <p id="calculatorDisplay"></p>
-        <button id="clear">C</button>
+  <body class="body">
+    <h1 class="heading">Calculator</h1>
+    <div class="container">
+      <div class="calculator">
+        <div class="calculatorRowOne">
+          <div class="displayContainer">
+            <p id="calculatorDisplay"></p>
+          </div>
+          <button class="opaque" id="clear">C</button>
+        </div>
+        <div class="calculatorRowTwo">
+          <button class="number" data-number="7">7</button>
+          <button class="number" data-number="8">8</button>
+          <button class="number" data-number="9">9</button>
+          <button class="operator opaque" data-operator="+">+</button>
+        </div>
+        <div class="calculatorRowThree">
+          <button class="number" data-number="4">4</button>
+          <button class="number" data-number="5">5</button>
+          <button class="number" data-number="6">6</button>
+          <button class="operator opaque" data-operator="-">-</button>
+        </div>
+        <div class="calculatorRowFour">
+          <button class="number" data-number="1">1</button>
+          <button class="number" data-number="2">2</button>
+          <button class="number" data-number="3">3</button>
+          <button class="operator opaque" data-operator="x">x</button>
+        </div>
+        <div class="calculatorRowFive">
+          <button class="number" data-number="0">0</button>
+          <button class="number" data-number=".">.</button>
+          <button class="opaque" id="enter">=</button>
+          <button class="operator opaque" data-operator="/">/</button>
+        </div>
       </div>
-      <div class="calculatorRowTwo">
-        <button class="number" data-number="7">7</button>
-        <button class="number" data-number="8">8</button>
-        <button class="number" data-number="9">9</button>
-        <button class="operator" data-operator="+">+</button>
+      <div class="resultsContainer">
+        <div class="answerContainer">
+          <p id="answer" class="answerText"></p>
+          <button class="clearResults" id="clearHistory">clear</button>
+        </div>
+        <div id="history"></div>
       </div>
-      <div class="calculatorRowThree">
-        <button class="number" data-number="4">4</button>
-        <button class="number" data-number="5">5</button>
-        <button class="number" data-number="6">6</button>
-        <button class="operator" data-operator="-">-</button>
-      </div>
-      <div class="calculatorRowFour">
-        <button class="number" data-number="1">1</button>
-        <button class="number" data-number="2">2</button>
-        <button class="number" data-number="3">3</button>
-        <button class="operator" data-operator="x">x</button>
-      </div>
-      <div class="calculatorRowFive">
-        <button class="number" data-number="0">0</button>
-        <button class="number" data-number=".">.</button>
-        <button id="enter">=</button>
-        <button class="operator" data-operator="/">/</button>
-      </div>
-    </div>
-    <div class="resultsContainer">
-      <p id="answer"></p>
-      <ul id="history"></ul>
     </div>
   </body>
 </html>

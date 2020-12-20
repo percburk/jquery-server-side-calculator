@@ -6,6 +6,8 @@ function onReady() {
   $('#enter').on('click', mathObjectToServer);
   $('#clear').on('click', clearInputs);
   $('.number').on('click', makeNumbers);
+  $('#clearHistory').on('click', clearHistory);
+  $('#history').on('click', '#equation', runEquationAgain)
   renderToDOM();
 } // end onReady
 
@@ -33,6 +35,23 @@ function assignOperator() {
   $('#calculatorDisplay').append(mathString);
 } // end assignOperator
 
+function runEquationAgain() {
+  mathString = $(this).text();
+  equalIndex = mathString.indexOf('=');
+  mathString = mathString.slice(0, equalIndex - 1);
+  
+  if (mathString.indexOf('+') !== -1) {
+    operator = '+';
+  } else if (mathString.indexOf('-') !== -1) {
+    operator = '-';
+  } else if (mathString.indexOf('x') !== -1) {
+    operator = 'x';
+  } else if (mathString.indexOf('/') !== -1) {
+    operator = '/';
+  }
+  mathObjectToServer();
+}
+
 function mathObjectToServer() {
   $('#calculatorDisplay').empty();
   console.log(mathString);
@@ -58,6 +77,16 @@ function mathObjectToServer() {
   operator = '';
 } // end sendMathObject
 
+function clearHistory() {
+      $.ajax({
+        url: '/clear',
+        type: 'DELETE'
+      }).then(function (response) {
+        console.log(response);
+        renderToDOM();
+      });
+}
+
 function renderToDOM() {
   // equationLog array from server through GET route
   $.ajax({
@@ -70,7 +99,7 @@ function renderToDOM() {
     // display last answer from equationLog
     $('#answer').text(response[0].answer);
     for (let object of response) {
-      $('#history').append(`<li>${object.equation}</li>`);
+      $('#history').append(`<p id="equation" class="equationList">${object.equation}</p>`);
     }
   });
 } // end renderToDOM

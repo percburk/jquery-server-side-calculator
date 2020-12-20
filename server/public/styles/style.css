@@ -1,4 +1,156 @@
-.container {
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap');
+
+.body {
   margin: 40px;
+  background-image: url(abstract-surface-wood-texture-background.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.heading {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 36px;
+  color: rgb(73, 73, 73);
+  letter-spacing: 0.1em;
+  margin-bottom: 50px;
+}
+
+.calculator {
+  width: 304px;
+  height: 380px;
+  display: inline-block;
+  margin-right: 30px;
+}
+
+.calculatorRowOne,
+.calculatorRowTwo,
+.calculatorRowThree,
+.calculatorRowFour,
+.calculatorRowFive {
+  display: flex;
+}
+
+.displayContainer {
+  height: 60px;
+  width: 212px;
+  display: inline-block;
+  border: 2px solid rgb(73, 73, 73);
+  border-radius: 6px;
+  margin: 8px 8px;
+  box-sizing: border-box;
+}
+
+#calculatorDisplay {
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  height: 24px;
+  color: rgb(73, 73, 73);
+  margin: 16px 0px;
+  font-weight: 300;
+  text-align: center;
+  overflow: scroll;
+}
+
+.opaque {
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 60px;
+  width: 60px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  color: rgb(73, 73, 73);
+  border: 2px solid rgb(73, 73, 73);
+  border-radius: 6px;
+  margin: 8px 8px;
+  outline: none;
+}
+
+.calculator .number {
+  background-color: rgba(0, 0, 0, 0);
+  height: 60px;
+  width: 60px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  color: rgb(73, 73, 73);
+  border: 2px solid rgb(73, 73, 73);
+  border-radius: 6px;
+  margin: 8px 8px;
+  outline: none;
+}
+
+.calculator button:hover {
+  background-color: rgb(43, 43, 43);
+  border: 2px solid rgb(43, 43, 43);
+  color: white;
+  transition: 0.2s;
+  outline: none;
+}
+
+.resultsContainer {
+  display: inline-block;
+  margin: 8px 8px 8px 30px;
+  height: 364px;
+  width: 304px;
+  overflow: scroll;
+  border: 2px solid rgb(73, 73, 73);
+  border-radius: 6px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+}
+
+.equationList {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  color: rgb(73, 73, 73);
+  margin: 12px 0px;
+}
+
+.answerContainer {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  width: 264px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgb(73, 73, 73);
+}
+
+.answerText {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 36px;
+  height: 36px;
+  width: 210px;
+  color: rgb(73, 73, 73);
+  margin: 9px 0px;
+  overflow: hidden;
+}
+
+.clearResults {
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 36px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  margin: 9px 0px;
+  color: rgb(73, 73, 73);
+  border: 2px solid rgb(73, 73, 73);
+  border-radius: 6px;
+  outline: none;
+}
+
+.answerContainer button:hover {
+  background-color: rgb(43, 43, 43);
+  border: 2px solid rgb(43, 43, 43);
+  color: white;
+  transition: 0.2s;
+  outline: none;
+}

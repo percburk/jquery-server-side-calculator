@@ -15,6 +15,11 @@ app.post('/data', (req, res) => {
   equationSolver(mathObject);
 });
 
+app.delete('/clear', (req, res) => {
+  res.sendStatus(201);
+  equationLog.length = 0;
+});
+
 // GET route for equationLog to client
 app.get('/data', (req, res) => {
   console.log('sending up equationLog');
