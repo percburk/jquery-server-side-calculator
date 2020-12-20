@@ -15,22 +15,18 @@ let operator;
 function makeNumbers() {
   console.log($(this).data('number'));
   let clickedNumber = $(this).data('number');
-  mathString += clickedNumber.toString();
+  mathString += clickedNumber;
   $('#calculatorDisplay').empty();
   $('#calculatorDisplay').text(mathString);
 }
 
 function assignOperator() {
-  // should work like a calculator, clicking new operator will delete previous
   console.log('clicked', $(this).data('operator'));
-  if (!operator) {
-    operator = $(this).data('operator');
-    mathString += operator;
-    $('#calculatorDisplay').empty();
-    $('#calculatorDisplay').append(mathString);
-  } else {
-    $('.operator').prop('disabled', true);
-  }
+  operator = $(this).data('operator');
+  mathString += ` ${operator} `;
+  $('#calculatorDisplay').empty();
+  $('#calculatorDisplay').append(mathString);
+  $('.operator').prop('disabled', true);
 } // end assignOperator
 
 function mathObjectToServer() {
@@ -38,11 +34,11 @@ function mathObjectToServer() {
   console.log(mathString);
   let mathObject = {};
   let operatorIndex = mathString.indexOf(operator);
-  if (operatorIndex === -1) {
+  if (!operator) {
     $('#answer').text(mathString);
   } else {
-    mathObject.numberOne = mathString.slice(0, operatorIndex);
-    mathObject.numberTwo = mathString.slice(operatorIndex + 1);
+    mathObject.numberOne = mathString.slice(0, operatorIndex - 1);
+    mathObject.numberTwo = mathString.slice(operatorIndex + 2);
     mathObject.operator = operator;
     // mathObject to server through POST route
     $.ajax({
