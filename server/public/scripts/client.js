@@ -7,7 +7,7 @@ function onReady() {
   $('#clear').on('click', clearInputs);
   $('.number').on('click', makeNumbers);
   $('#clearHistory').on('click', clearHistory);
-  $('#history').on('click', '#equation', runEquationAgain)
+  $('#history').on('click', '#equation', runEquationAgain);
   renderToDOM();
 } // end onReady
 
@@ -15,6 +15,7 @@ let mathString = '';
 let operator;
 
 function makeNumbers() {
+  // uses click listener to build mathString
   console.log($(this).data('number'));
   let clickedNumber = $(this).data('number');
   mathString += clickedNumber;
@@ -23,6 +24,8 @@ function makeNumbers() {
 }
 
 function assignOperator() {
+  // uses click listener to assign operator in mathString
+  // will also reassign operator if new one is clicked
   console.log('clicked', $(this).data('operator'));
   if (!operator) {
     operator = $(this).data('operator');
@@ -36,10 +39,12 @@ function assignOperator() {
 } // end assignOperator
 
 function runEquationAgain() {
+  // will rerun clicked equation in #history, deletes '=' onward
   mathString = $(this).text();
   equalIndex = mathString.indexOf('=');
   mathString = mathString.slice(0, equalIndex - 1);
-  
+
+  // searches for operator in mathString and assigns it to variable 'operator'
   if (mathString.indexOf('+') !== -1) {
     operator = '+';
   } else if (mathString.indexOf('-') !== -1) {
@@ -49,6 +54,7 @@ function runEquationAgain() {
   } else if (mathString.indexOf('/') !== -1) {
     operator = '/';
   }
+
   mathObjectToServer();
 }
 
@@ -78,13 +84,14 @@ function mathObjectToServer() {
 } // end sendMathObject
 
 function clearHistory() {
-      $.ajax({
-        url: '/data',
-        type: 'DELETE'
-      }).then(function (response) {
-        console.log(response);
-        renderToDOM();
-      });
+  // deletes equationLog array at server
+  $.ajax({
+    url: '/data',
+    type: 'DELETE',
+  }).then(function (response) {
+    console.log(response);
+    renderToDOM();
+  });
 }
 
 function renderToDOM() {
@@ -99,7 +106,9 @@ function renderToDOM() {
     // display last answer from equationLog
     $('#answer').text(response[0].answer);
     for (let object of response) {
-      $('#history').append(`<p id="equation" class="equationList">${object.equation}</p>`);
+      $('#history').append(
+        `<p id="equation" class="equationList">${object.equation}</p>`
+      );
     }
   });
 } // end renderToDOM
