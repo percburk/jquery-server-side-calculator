@@ -23,10 +23,14 @@ function makeNumbers() {
 function assignOperator() {
   // should work like a calculator, clicking new operator will delete previous
   console.log('clicked', $(this).data('operator'));
-  operator = $(this).data('operator');
-  mathString += operator;
-  $('#calculatorDisplay').empty();
-  $('#calculatorDisplay').append(mathString);
+  if (!operator) {
+    operator = $(this).data('operator');
+    mathString += operator;
+    $('#calculatorDisplay').empty();
+    $('#calculatorDisplay').append(mathString);
+  } else {
+    $('.operator').prop('disabled', true);
+  }
 } // end assignOperator
 
 function mathObjectToServer() {
@@ -36,7 +40,6 @@ function mathObjectToServer() {
   let operatorIndex = mathString.indexOf(operator);
   if (operatorIndex === -1) {
     $('#answer').text(mathString);
-    mathString = '';
   } else {
     mathObject.numberOne = mathString.slice(0, operatorIndex);
     mathObject.numberTwo = mathString.slice(operatorIndex + 1);
@@ -50,8 +53,10 @@ function mathObjectToServer() {
       console.log(response);
       renderToDOM();
     });
-    mathString = '';
   }
+  mathString = '';
+  operator = '';
+  $('.operator').prop('disabled', false);
 } // end sendMathObject
 
 function renderToDOM() {
@@ -76,4 +81,5 @@ function clearInputs() {
   $('#calculatorDisplay').empty();
   $('#answer').empty();
   mathString = '';
+  operator = '';
 } // end clearInputs
